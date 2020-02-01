@@ -1,10 +1,25 @@
-/**
- * @format
- */
-
-import { AppRegistry } from "react-native";
+import { Navigation } from "react-native-navigation";
 import App from "./App";
 
-const APP_NAME = "repix";
+Navigation.registerComponent("navigation.Gallery", () => App);
 
-AppRegistry.registerComponent(APP_NAME, () => App);
+Navigation.events().registerAppLaunchedListener(() =>
+  Navigation.setRoot({
+    root: {
+      bottomTabs: {
+        children: [
+          {
+            component: {
+              name: "navigation.Gallery",
+              options: {
+                bottomTab: {
+                  text: "Main"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  })
+);
